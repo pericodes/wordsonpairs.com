@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body >
+	<header>
+		<div class="container">
+			<h1>Words on Pairs</h1>
+		</div>
+		<section id="menu" class="d-flex justify-content-center bg-dark">
+			<nav class="navbar navbar-expand-md bg-dark navbar-dark container">
+			  <a class="navbar-brand" href="/">Home</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+			    <ul class="navbar-nav">
+			      <li class="nav-item">
+			        <a class="nav-link active" href="/mySaves">My saved links</a>
+			      </li>
+			    </ul>
+			  </div>  
+			</nav>
+		</section>
+	</header>
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+			<main class="col-sm-12 card">
+				<section id="mySaves">
+					
+				</section>
+			</main>
+		</div>
+	</div>
+
+
+
+
+
+	<script type="text/javascript">
+		String.prototype.replaceAll = function(search, replacement) {
+		    var target = this;
+		    return target.replace(new RegExp(search, 'gm'), replacement);
+		};
+		$.noConflict();
+		
+		let links = localStorage.getItem('links');
+			if(links){
+				links = JSON.parse(links);
+			}else{
+				links = []; 
+			}
+
+		createTable();
+
+		function createTable() {
+			let html = "";
+			if(links.length > 0){
+				html = `<div class="table-responsive"><table class="table table-sm">
+							  <thead>
+							    <tr>
+							      <th scope="col">#</th>
+							      <th scope="col">Link</th>
+							      <th scope="col">Remove</th>
+							    </tr>
+							  </thead>
+							  <tbody>`;
+				for (var i = 0; i < links.length; i++) {
+					html += `<tr>
+						      <th scope="row">${i}</th>
+						      <td><a href="${links[i].link}">${links[i].name}</a></td>
+						      <td><button type="button" class="btn btn-danger" onClick="remove(this,'${i}')">Remove</button></td>
+						    </tr>`
+				}
+				html += "</tbody></table></div>"; 
+			}else{
+				html = `<div class="alert alert-primary mt-3" role="alert">
+						  No links found.
+						</div>`;
+			}
+				document.getElementById("mySaves").innerHTML = "";
+				document.getElementById("mySaves").insertAdjacentHTML("afterbegin", html);
+		}
+
+		function remove(element, n) {
+			links.splice(n,1);
+			localStorage.setItem('links', JSON.stringify(links));
+			element = element.closest("tr");
+			element.parentNode.removeChild(element); 
+			createTable(); 
+		}
+
+	</script>
+
+	</body>
+</html>

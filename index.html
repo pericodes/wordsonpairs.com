@@ -19,14 +19,8 @@
 			  <div class="collapse navbar-collapse" id="collapsibleNavbar">
 			    <ul class="navbar-nav">
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Add new words on pair page</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">Link</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">Link</a>
-			      </li>    
+			        <a class="nav-link" href="/mySaves">My saved links</a>
+			      </li>  
 			    </ul>
 			  </div>  
 			</nav>
@@ -120,6 +114,7 @@ azul"></textarea>
 				    </div>
 				    <div class="col-sm-2">
 						<button type="button" id="correct-button" class="btn btn-primary mb-2" onclick="copyLink()" style="font-size: large;">Copy</button>
+						<button type="button" id="correct-button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#saveLinkNameModal" style="font-size: large;">Save</button>
 				  	</div>
 				  </div>
 			</section>
@@ -153,6 +148,31 @@ azul"></textarea>
 						</main>
 		</div>
 	</div>
+
+
+
+<!-- modal -->
+<div class="modal fade" id="saveLinkNameModal" tabindex="-1" role="dialog" aria-labelledby="saveLinkNameModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="saveLinkNameModalLabel">Set the name to this link</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" id="linkName" aria-describedby="linkNameHelp" placeholder="Tap here the name for this link">
+    	<small id="linkNameHelp" class="form-text text-muted">This link will be saved locally. That means that if you change the device, the links saved won't be there.</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveLink()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 	<script type="text/javascript">
 		String.prototype.replaceAll = function(search, replacement) {
 		    var target = this;
@@ -433,6 +453,20 @@ azul"></textarea>
 			  /* Copy the text inside the text field */
 			document.execCommand("copy");
 		}
-</script>	
+		function saveLink() {
+			let link = document.getElementById("shareLinkInput").value;
+			let name = document.getElementById("linkName").value
+			var links = JSON.parse(localStorage.getItem('links'));
+			if(!links){
+				links = [];
+			}
+			links.push({name, link});
+			localStorage.setItem('links', JSON.stringify(links));
+
+			console.log(links); 
+		}
+
+</script>
+
 	</body>
 </html>
