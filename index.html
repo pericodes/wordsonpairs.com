@@ -169,8 +169,8 @@ azul"></textarea>
 		let wordsBtoAFails = null;
 
 		for(var pair of (new URL(window.location.href)).searchParams.entries()) {
-		   document.getElementById('wordA').value = pair[0];
-		   document.getElementById('wordB').value = pair[1];
+		   document.getElementById('wordA').value = decodeURI(pair[0]);
+		   document.getElementById('wordB').value = decodeURI(pair[1]);
 		   addWord();
 		}
 
@@ -270,7 +270,7 @@ azul"></textarea>
 				 shareLinkInput += '?' ;
 
 				for (var i = 0; i < wordsTranslatedAux.length; i++) {
-					shareLinkInput += wordsToLearnAux[i] + "=" + wordsTranslatedAux[i] + "&";
+					shareLinkInput += encodeURI(wordsToLearnAux[i]) + "=" + encodeURI(wordsTranslatedAux[i]) + "&";
 				}
 
 				shareLinkInput = shareLinkInput.slice(0, -1); 
