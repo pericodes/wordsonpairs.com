@@ -112,6 +112,17 @@ azul"></textarea>
 				</section>
 				<div class="alert alert-danger" id="wordInsertError" style="font-size: xx-large;" role="alert"></div>
 			</section>
+			<section id="share" class="m-5">
+				  <div class="form-group row" style="font-size: larger;">
+				    <label for="shareLinkInput" class="col-sm-2 col-form-label">Share link:</label>
+				    <div class="col-sm-8">
+				      <input type="text" readonly class="form-control-plaintext" id="shareLinkInput" onclick="copyLink()">
+				    </div>
+				    <div class="col-sm-2">
+						<button type="button" id="correct-button" class="btn btn-primary mb-2" onclick="copyLink()" style="font-size: large;">Copy</button>
+				  	</div>
+				  </div>
+			</section>
 			<div class="d-flex justify-content-center">
 				<button class="btn btn-info dropdown-toggle" type="button" data-toggle="collapse" data-target="#Stats" aria-expanded="false" aria-controls="Stats" style="font-size: xx-large;">Stats</button>
 			</div>
@@ -246,16 +257,28 @@ azul"></textarea>
 		}
 		function thereAreWords() {
 			document.getElementById('wordInsert-correct').style.display = "none";
+			let shareLinkInput = window.location.hostname;
 			if (wordsToLearnAux == null || wordsTranslatedAux == null) {
 				document.getElementById("wordInsertError").innerHTML = "You haven't added any words yet.";	
 				document.getElementById("wordInsertError").style.display = "block";
 				//document.getElementById('wordInserted').style.display = "none";
 				//document.getElementById('correct-button').style.display = "none";
+
 			} else {
 				document.getElementById("wordInsert-correct").style.display = "block";
 				document.getElementById('wordInsertError').style.display = "none";
+				 shareLinkInput += '?' ;
+
+				for (var i = 0; i < wordsTranslatedAux.length; i++) {
+					shareLinkInput += wordsToLearnAux[i] + "=" + wordsTranslatedAux[i] + "&";
+				}
+
+				shareLinkInput = shareLinkInput.slice(0, -1); 
 				generateNewWord(); 
 			}
+			
+			document.getElementById("shareLinkInput").value = shareLinkInput; 
+
 		}
 		document.getElementById('wordInserted').addEventListener("keyup", function(event) {
 		  // Number 13 is the "Enter" key on the keyboard
@@ -400,6 +423,15 @@ azul"></textarea>
 				let wordMessage = document.getElementById('wordMessage').innerHTML = normalize(wordsTranslatedAux[word]);
 			}
 			
+		}
+
+		function copyLink() {
+			var copyText = document.getElementById("shareLinkInput");
+			copyText.select();
+			copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+			  /* Copy the text inside the text field */
+			document.execCommand("copy");
 		}
 </script>	
 	</body>
