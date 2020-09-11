@@ -44,13 +44,13 @@
 					    <label for="wordsToLearn">Words A</label>
 					    <textarea class="form-control" id="wordsToLearn" rows="8" placeholder="pink 
 yellow 
-blue" readonly=""></textarea>
+blue"></textarea>
 					    </div>
 					<div class="form-group col-sm-6">
 					    <label for="wordsTranslated">Words B</label>
 					    <textarea class="form-control" id="wordsTranslated" rows="8" placeholder="rosa
 amarillo
-azul" readonly=""></textarea>
+azul"></textarea>
 					</div>
 				</div>
 				<div class="row card-body">
@@ -72,8 +72,8 @@ azul" readonly=""></textarea>
 				  Words added ! :)
 				</div>
 				<div class="d-flex justify-content-center">
-					<!--<button type="button" class="btn btn-success m-3" onclick="addWords()" style="font-size: x-large;"
-					data-toggle="collapse" data-target=".AddWords" aria-expanded="false" aria-controls="AddWords wordInsert">Done!</button>-->
+					<button type="button" class="btn btn-success m-3" onclick="addWords()" style="font-size: x-large;"
+					data-toggle="collapse" data-target=".AddWords" aria-expanded="false" aria-controls="AddWords wordInsert">Done!</button>
 					<button type="button" class="btn btn-danger m-3" onclick="removeWords()" style="font-size: x-large;">Remove the words</button>
 				</div>
 			</section>
@@ -194,7 +194,7 @@ azul" readonly=""></textarea>
 					wordB.focus();
 				}
 			}
-			addWords(); 
+			addWords();
 		}
 		function addWords() {
 			document.getElementById("wordsAddError").style.display = "none";
