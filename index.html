@@ -291,7 +291,7 @@ azul"></textarea>
 		}
 		function thereAreWords() {
 			document.getElementById('wordInsert-correct').style.display = "none";
-			let shareLinkInput = window.location.hostname;
+			let shareLinkInput = window.location.protocol + '//' + window.location.hostname;
 			if (wordsToLearnAux == null || wordsTranslatedAux == null) {
 				document.getElementById("wordInsertError").innerHTML = "You haven't added any words yet.";	
 				document.getElementById("wordInsertError").style.display = "block";
