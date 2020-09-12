@@ -38,14 +38,14 @@
 				<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="collapse" data-target=".AddWords" aria-expanded="false" aria-controls="AddWords wordInsert" style="font-size: x-large;">Add Words</button>
 			</div>
 			<section class="collapse border-bottom AddWords" id="AddWords" style="font-size: x-large;">
-				<div class="row card-body">
-					<div class="form-group col-sm-6">
+				<div id="textAreas" class="row card-body d-none d-md-flex">
+					<div class="form-group col-md-6">
 					    <label for="wordsToLearn">Words A</label>
 					    <textarea class="form-control" id="wordsToLearn" rows="8" placeholder="pink 
 yellow 
 blue"></textarea>
 					    </div>
-					<div class="form-group col-sm-6">
+					<div class="form-group col-md-6">
 					    <label for="wordsTranslated">Words B</label>
 					    <textarea class="form-control" id="wordsTranslated" rows="8" placeholder="rosa
 amarillo
@@ -54,13 +54,13 @@ azul"></textarea>
 				</div>
 				<div class="row card-body">
 					<label class="col-sm-12" for="wordA">Add new word</label>
-					<div class="form-group col-sm-5">
+					<div class="form-group col-md-5">
 						<input type="text" class="form-control" id="wordA"  placeholder="blue" required="">
 					</div>
-					<div class="form-group col-sm-5">
+					<div class="form-group col-md-5">
 						<input type="text" class="form-control" id="wordB"  placeholder="azul" required="">
 					</div>
-					<div class="col-sm-2 d-flex justify-content-center">
+					<div class="col-md-2 d-flex justify-content-center">
 						<button type="button" class="btn btn-success" onclick="addWord()" style="font-size: large;">Add word</button>
 					</div>
 				</div>
